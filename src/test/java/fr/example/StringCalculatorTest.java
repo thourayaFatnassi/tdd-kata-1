@@ -35,5 +35,15 @@ public class StringCalculatorTest {
         stringCalculator.Add("1,\n");
     }
 
+    @Test
+    public void add_with_multi_delimiter_and_default_delimiter() throws Exception {
+        assertThat(stringCalculator.Add("//;\n1;2")).isEqualTo(3);
+    }
+
+    @Test
+    public void add_with_multi_delimiter() throws Exception {
+        assertThat(stringCalculator.Add("//;\n1;2\n,3")).isEqualTo(6);
+    }
+
 
 }

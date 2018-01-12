@@ -1,13 +1,21 @@
 package fr.example;
 
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
-    private static final String SEPARATOR = ",";
+    private static final Pattern SPLIT_PATTERN = Pattern.compile(",|\\n") ;
+    private static final Pattern NOT_VALID_PATTERN = Pattern.compile("[0-9],\n") ;
+
     public int Add(String numbers) throws IllegalArgumentException{
         if(numbers.isEmpty()){
             return 0;
         }
-        return Arrays.stream(numbers.split(SEPARATOR)).mapToInt(Integer::valueOf).sum();
+        if(NOT_VALID_PATTERN.matcher(numbers).matches()) {
+            throw  new IllegalArgumentException("Invalid parameter");
+
+        }
+        return Arrays.stream(SPLIT_PATTERN.split(numbers)).mapToInt(Integer::valueOf).sum();
     }
+
 }

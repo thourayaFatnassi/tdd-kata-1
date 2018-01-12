@@ -25,5 +25,15 @@ public class StringCalculatorTest {
         assertThat(stringCalculator.Add("1,2,3")).isEqualTo(6);
     }
 
+    @Test
+    public void add_with_commas_newLine_separator() throws Exception {
+        assertThat(stringCalculator.Add("1\n2,3")).isEqualTo(6);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void add_with_commas_newLine_separator_KO_example() throws Exception {
+        stringCalculator.Add("1,\n");
+    }
+
 
 }

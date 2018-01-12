@@ -20,9 +20,9 @@ public class StringCalculatorTest {
         assertThat(stringCalculator.Add("1,2")).isEqualTo(3);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void add_with_three_numbers() throws Exception {
-        stringCalculator.Add("1,2,3");
+        assertThat(stringCalculator.Add("1,2,3")).isEqualTo(6);
     }
 
 
